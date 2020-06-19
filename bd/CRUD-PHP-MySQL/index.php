@@ -1,3 +1,6 @@
+<?php
+session_start(); #Inicia una secion o reanuda una exixtente
+?>
 <!DOCTYPE html>
 <html lang="en">
 

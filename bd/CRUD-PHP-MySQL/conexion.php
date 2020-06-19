@@ -1,5 +1,4 @@
 <?php  
-    session_start(); #Inicia una secion o reanuda una exixtente
     $servername = getenv("servername");   #Localhost o IP
     $username = getenv("username");          #Usuario de la dB
     $password = getenv("password");   #Contraseña de la dB
