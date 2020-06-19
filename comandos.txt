@@ -1,0 +1,19 @@
+https://docs.docker.com/compose/compose-file/
+ docker build -t mipagina:v1 .
+ docker run -p 80:80 --rm  --name mipagina mipagina:v1
+ docker-compose up -d --build
+https://docs.docker.com/compose/reference/
+docker-compose  -f docker-compose-image.yml -d up 
+docker volume ls
+--carpeta que contiene todos las carpeta de configuracio docker
+/var/lib/docker
+
+--en el contenedor de php-apache, para instalar el ping y hacer ping al contenedor de mysql
+apt-get update
+apt-get install iputils-ping
+ping db_mysql
+
+
+
+https://www.youtube.com/watch?v=ydMQXrt_oIQ
+https://github.com/wlopezob/willilopez

@@ -1,0 +1,13 @@
+version: "3.5"
+services:
+  gitlab:
+    container_name: container_web_gitlab
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+          external_url 'http://localhost'
+          # Add any other gitlab.rb configuration here, each on its own line
+    hostname: localhost
+    image: "store/gitlab/gitlab-ce:11.10.4-ce.0"
+    ports:
+      - "80:80"
+    restart: always

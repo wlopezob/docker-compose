@@ -1,0 +1,3 @@
+FROM  php:7.2-apache
+ENV title_page='mi pagina'
+COPY app/  /var/www/html/

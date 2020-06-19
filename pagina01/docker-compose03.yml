@@ -1,0 +1,13 @@
+version: "3"
+services: 
+    mipagina01:
+        build: .
+        image: img_mipagina:v1
+        restart: always
+        ports: 
+            - "8084:80"
+        volumes: 
+            - mi-vol:/var/www/html/
+        container_name: cont_mipagina
+volumes: 
+    mi-vol:

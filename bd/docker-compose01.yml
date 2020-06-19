@@ -1,0 +1,13 @@
+version: "3"
+services: 
+    mipagina01:
+        build: .
+        image: img_mipagina:v1
+        restart: always
+        ports: 
+            - "8084:80"
+        volumes: 
+            - ./CRUD-PHP-MySQL:/var/www/html/
+        environment: 
+            title_page: 'titulo desde docker compose'
+        container_name: cont_mipagina

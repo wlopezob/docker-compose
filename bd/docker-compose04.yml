@@ -1,0 +1,44 @@
+version: "3"
+services: 
+    mipagina01:
+        build:
+            context: .
+            dockerfile: dockerfile02
+        image: img_mipagina:v1
+        restart: always
+        ports: 
+            - "8084:80"
+        volumes: 
+            - ./CRUD-PHP-MySQL:/var/www/html/
+        environment: 
+            title_page: 'titulo desde docker compose'
+            database: ${database}
+            username: ${username}
+            password: ${password}
+            servername: ${servername}
+            port: 3306
+        networks: 
+            - net_mipagina01
+        container_name: cont_mipagina
+        depends_on: 
+            - db_mysql
+
+    db_mysql:
+        image: mysql:5.7
+        volumes:
+            - db_data:/var/lib/mysql
+        restart: always
+        ports: 
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${password}
+            MYSQL_DATABASE: ${database}
+            MYSQL_USER: ${username}
+            MYSQL_PASSWORD: ${password}
+        networks: 
+            - net_mipagina01
+    
+volumes: 
+    db_data: {}
+networks: 
+    net_mipagina01:
