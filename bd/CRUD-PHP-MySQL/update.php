@@ -1,3 +1,34 @@
+<?php
+            include("conexion.php");
+            if(isset($_GET['id'])){ #Determina si una variable está definida y no es NULL / isset
+                $id = $_GET['id'];
+
+                $query = "SELECT * FROM datos WHERE id = $id";
+                $result = mysqli_query($conn, $query);
+                #Obtiene el número de filas de un conjunto de resultados / mysqli_num_rows
+                if(mysqli_num_rows($result) == 1){
+                    $row = mysqli_fetch_array($result);
+                    #Obtiene una fila de resultados como un array asociativo, numérico, o ambos
+                    $id = $row['id'];
+                    $name = $row['nombre'];
+                    $address = $row['dirrecion'];
+                    $phone = $row['telefono'];
+                }
+            }
+            if(isset($_POST['update'])){
+                $id = $_GET['id'];
+                $name = $_POST['name'];
+                $address = $_POST['address'];
+                $phone = $_POST['phone'];
+
+                $update = "UPDATE datos set nombre = '$name', dirrecion ='$address', telefono = '$phone' WHERE id = $id";
+                mysqli_query($conn, $update);
+                $_SESSION['message'] = 'Registro actualizado exitosamente';
+                $_SESSION['message_type'] = 'info'; # Función de bootstrap
+                header('Location:index.php');
+                exit;
+            }
+        ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,36 +58,7 @@
                 <a href="index.php" class="navbar-brand">PHP MySQL CRUD</a>
             </div>
         </nav>
-        <?php
-            include("conexion.php");
-            if(isset($_GET['id'])){ #Determina si una variable está definida y no es NULL / isset
-                $id = $_GET['id'];
-
-                $query = "SELECT * FROM datos WHERE id = $id";
-                $result = mysqli_query($conn, $query);
-                #Obtiene el número de filas de un conjunto de resultados / mysqli_num_rows
-                if(mysqli_num_rows($result) == 1){
-                    $row = mysqli_fetch_array($result);
-                    #Obtiene una fila de resultados como un array asociativo, numérico, o ambos
-                    $id = $row['id'];
-                    $name = $row['nombre'];
-                    $address = $row['dirrecion'];
-                    $phone = $row['telefono'];
-                }
-            }
-            if(isset($_POST['update'])){
-                $id = $_GET['id'];
-                $name = $_POST['name'];
-                $address = $_POST['address'];
-                $phone = $_POST['phone'];
-
-                $update = "UPDATE datos set nombre = '$name', dirrecion ='$address', telefono = '$phone' WHERE id = $id";
-                mysqli_query($conn, $update);
-                $_SESSION['message'] = 'Registro actualizado exitosamente';
-                $_SESSION['message_type'] = 'info'; # Función de bootstrap
-                header('Location:index.php');
-            }
-        ?>
+        
         <div class="container p-4">
             <div class="row">
                 <div class="col-md-4 mx-auto">
